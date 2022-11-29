@@ -30,7 +30,7 @@ export default function Home() {
     <View>
       <Button title="Get Users" onPress={()=>GetData()}></Button>
       {users.map(o=>
-      <View style={{display:'flex', flexDirection:'column', alignItems:'center',justifyContent:'center' }}>
+      <View key={Math.random()} style={{display:'flex', flexDirection:'column', alignItems:'center',justifyContent:'center' }}>
         <Image source={{uri:o.avatar}} style={{width:100, height:100, borderRadius: 50}}></Image>
         <Text>{o.id} - {o.fullname}</Text>
       </View>  
