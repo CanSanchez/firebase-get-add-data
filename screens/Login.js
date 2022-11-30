@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, Button, Image , TextInput} from 'react-native'
-import React from 'react'
+import React, { useRef, useEffect } from 'react';
+import LottieView from 'lottie-react-native';
 
 import {  
     signInWithEmailAndPassword,
@@ -18,9 +19,27 @@ export default function Login({navigation}) {
         navigation.navigate('Home')
     }
 
+
+        const animation = useRef(null);
+        useEffect(() => {
+          // You can control the ref programmatically, rather than using autoPlay
+          // animation.current?.play();
+        }, []);
+
   return (
     <View style={styles.container}>
-      <Text>Please Login Here</Text>
+      <LottieView
+        autoPlay
+        ref={animation}
+        style={{
+          width: 200,
+          height: 200,
+          backgroundColor: 'transparent',
+        }}
+        // Find more Lottie files at https://lottiefiles.com/featured
+        source={require('../assets/login.json')}
+      />
+    <Text>Please Login Here</Text>
     <View style={styles.inputContainer}>
       <TextInput 
         onChangeText={(text) => setEmail(text)} placeholder='Email'
@@ -36,7 +55,6 @@ export default function Login({navigation}) {
         <Button
             onPress={() => {
                 SignIn();
-                navigation.navigate('Login')
             }}
             title='Login'
         />
